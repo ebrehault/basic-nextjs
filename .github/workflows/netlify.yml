@@ -1,6 +1,6 @@
 name: Netlify
 
-on: workflow_dispatch
+on: repository_dispatch
 
 jobs:
   build:
@@ -10,6 +10,6 @@ jobs:
       - name: Deploy
         uses: actions/setup-node@v1
       - run: yarn
-      - run: ./node_modules/.bin netlify deploy --build
+      - run: ./node_modules/.bin/netlify deploy --build --dir=. --auth=${{ secrets.NETLIFY_TOKEN }}
         env:
           CI: true
